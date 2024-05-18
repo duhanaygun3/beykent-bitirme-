@@ -19,17 +19,18 @@ namespace SchoolManagementSystem
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string email = inputEmail.Value.Trim();
+            string ıdentity = inpuIdentity.Value.Trim();
             string password = inputPassword.Value.Trim();
-            DataTable dt = fn.Fetch("Select * from Teacher where Email = '"+email+"' and password = '"+password+"' ");
-            if (email == "Admin" && password == "123")
+            DataTable dt = fn.Fetch("Select * from Users where IdentityNo = '" + ıdentity + "' and password = '"+password+"' ");
+            DataTable db = fn.Fetch("Select * from Users where IdentityNo = '" + ıdentity + "' and password = '" + password + "' and IsAdmin=1");
+            if (db.Rows.Count>0)
             {
-                Session["admin"] = email;
+                Session["admin"] = ıdentity;
                 Response.Redirect("Admin/AdminHome.aspx");
             }
             else if (dt.Rows.Count > 0)
             {
-                Session["staff"] = email;
+                Session["staff"] = ıdentity;
                 Response.Redirect("Teacher/TeacherHome.aspx");
             }
             else
@@ -37,6 +38,13 @@ namespace SchoolManagementSystem
                 lblMsg.Text = "Login Failed!!";
                 lblMsg.ForeColor = System.Drawing.Color.Red;
             }
+        }
+
+        protected void btnSignUp_Click(object sender, EventArgs e)
+        {
+          
+                Response.Redirect("SignUp.aspx");
+           
         }
     }
 }

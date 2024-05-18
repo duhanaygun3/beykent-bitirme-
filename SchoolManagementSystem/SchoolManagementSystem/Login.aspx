@@ -38,16 +38,16 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-10 col-xl-7 mx-auto">
-                                    <h3 class="display-4 pb-3">Sign In</h3>
-                                    <p class="text-muted mb-4">Login page for Admin & Teacher.</p>
+                                    <h3 class="display-4 pb-3">Radar</h3>
                                     <div class="form-group mb-3">
-                                        <input id="inputEmail" type="text" placeholder="T.C Kimlik" required="" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
+                                        <input id="inpuIdentity" type="text" placeholder="T.C Kimlik" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
                                     </div>
                                     <div class="form-group mb-3 mb-2">
-                                        <input id="inputPassword" type="password" placeholder="Password" required="" runat="server" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
+                                        <input id="inputPassword" type="password" placeholder="Şifre" runat="server" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
                                     </div>
 
-                                    <asp:Button ID="btnLogin" runat="server" Text="Sign in" CssClass="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" BackColor="#5558C9" OnClick="btnLogin_Click" />
+                                    <asp:Button ID="btnLogin" runat="server" Text="Giriş Yap" CssClass="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" BackColor="#5558C9" OnClick="btnLogin_Click" />
+                                    <asp:Button ID="btnSignUp" runat="server" Text="Kayıt Ol" CssClass="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" BackColor="#5558C9" OnClick="btnSignUp_Click" />
                                     <div class="text-center d-flex justify-content-between mt-4">
                                         <asp:Label ID="lblMsg" runat="server"></asp:Label>
                                     </div>
