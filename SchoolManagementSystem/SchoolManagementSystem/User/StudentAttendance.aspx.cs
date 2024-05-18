@@ -14,16 +14,16 @@ namespace SchoolManagementSystem.User
         Commonfnx fn = new Commonfnx();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["staff"] == null)
-            {
-                Response.Redirect("../Login.aspx");
-            }
+            //if (Session["staff"] == null)
+            //{
+            //    Response.Redirect("../Login.aspx");
+            //}
 
-            if (!IsPostBack)
-            {
-                GetClass();
-                btnMarkAttendance.Visible = false;
-            }
+            //if (!IsPostBack)
+            //{
+            //    GetClass();
+            //    btnMarkAttendance.Visible = false;
+            //}
         }
 
         protected void Timer1_Tick(object sender, EventArgs e)
