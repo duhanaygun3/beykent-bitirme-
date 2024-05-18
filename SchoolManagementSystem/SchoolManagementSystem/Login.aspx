@@ -41,7 +41,7 @@
                                     <h3 class="display-4 pb-3">Sign In</h3>
                                     <p class="text-muted mb-4">Login page for Admin & Teacher.</p>
                                     <div class="form-group mb-3">
-                                        <input id="inputEmail" type="text" placeholder="Email address" required="" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
+                                        <input id="inputEmail" type="text" placeholder="T.C Kimlik" required="" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
                                     </div>
                                     <div class="form-group mb-3 mb-2">
                                         <input id="inputPassword" type="password" placeholder="Password" required="" runat="server" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
