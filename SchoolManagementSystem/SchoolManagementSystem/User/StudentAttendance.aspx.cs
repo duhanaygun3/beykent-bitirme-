@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using static SchoolManagementSystem.Models.CommonFn;
 
-namespace SchoolManagementSystem.Teacher
+namespace SchoolManagementSystem.User
 {
     public partial class StudentAttendance : System.Web.UI.Page
     {

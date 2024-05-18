@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Teacher/TeacherMst.Master" AutoEventWireup="true" CodeBehind="TeacherHome.aspx.cs" Inherits="SchoolManagementSystem.Teacher.TeacherHome" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/UserMst.Master" AutoEventWireup="true" CodeBehind="UserHome.aspx.cs" Inherits="SchoolManagementSystem.User.UserHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -8,7 +8,7 @@
             <div>
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
-            <h2 class="text-center">Teacher Home Page</h2>
+            <h2 class="text-center">Kullanıcı Paneli</h2>
         </div>
     </div>
 

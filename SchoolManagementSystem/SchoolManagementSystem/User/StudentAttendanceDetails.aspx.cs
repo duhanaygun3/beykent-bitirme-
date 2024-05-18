@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SchoolManagementSystem.Teacher
+namespace SchoolManagementSystem.User
 {
     public partial class StudentAttendanceDetails : System.Web.UI.Page
     {

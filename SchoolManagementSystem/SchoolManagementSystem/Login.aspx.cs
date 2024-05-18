@@ -31,7 +31,7 @@ namespace SchoolManagementSystem
             else if (dt.Rows.Count > 0)
             {
                 Session["staff"] = ıdentity;
-                Response.Redirect("Teacher/TeacherHome.aspx");
+                Response.Redirect("User/UserHome.aspx");
             }
             else
             {
