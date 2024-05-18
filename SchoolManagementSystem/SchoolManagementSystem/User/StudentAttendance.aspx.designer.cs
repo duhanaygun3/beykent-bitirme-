@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SchoolManagementSystem.Teacher
+namespace SchoolManagementSystem.User
 {
 
 
