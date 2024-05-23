@@ -24,6 +24,15 @@ namespace SchoolManagementSystem
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// imgRadar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgRadar;
+
+        /// <summary>
         /// inpuIdentity control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace SchoolManagementSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword inputPassword;
+
+        /// <summary>
+        /// hdnUserID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hdnUserID;
 
         /// <summary>
         /// btnLogin control.

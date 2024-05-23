@@ -27,7 +27,7 @@
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-3 col-md-offset-2 mb-3">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-primary btn-block" BackColor="#5558C9" Text="Add Class" OnClick="btnAdd_Click" />
+                    <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-primary btn-block" BackColor="#007F00" Text="Add Class" OnClick="btnAdd_Click" />
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                             <ItemStyle HorizontalAlign="Center" />
                             </asp:CommandField>
                         </Columns>
-                        <HeaderStyle BackColor="#5558C9" ForeColor="White"/>
+                        <HeaderStyle BackColor="#007F00" ForeColor="White"/>
                     </asp:GridView>
                 </div>
             </div>

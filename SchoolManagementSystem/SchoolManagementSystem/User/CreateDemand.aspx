@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/UserMst.Master" AutoEventWireup="true" CodeBehind="StudentAttendance.aspx.cs" Inherits="SchoolManagementSystem.User.StudentAttendance" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/UserMst.Master" AutoEventWireup="true" CodeBehind="CreateDemand.aspx.cs" Inherits="SchoolManagementSystem.User.CreateDemand" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <asp:Label ID="userID" runat="server" Visible="false"></asp:Label>
     <div style="background-image: url('../Image/bg4.jpg'); width: 100%; height: 720px; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
         <div class="container p-md-4 p-sm-4">
             <div>
@@ -22,27 +22,27 @@
             <div class="col-md-6">
                   <div class="col-md-12">
                    <label for="demandDate">Talep Tarihi</label>
-                   <asp:TextBox ID="demandDate" runat="server" CssClass="form-control" placeholder="demandDate" TextMode="Date" required>
+                   <asp:TextBox ID="inputDemandDate" runat="server" CssClass="form-control" placeholder="demandDate" TextMode="Date" required>
               </asp:TextBox>
              </div>
                   <div class="col-md-12">
                             <label for="Amount">Tutar</label>
-                           <asp:TextBox ID="Amount" runat="server" CssClass="form-control" placeholder="Tutar" TextMode="Number" required>
+                           <asp:TextBox ID="inputAmount" runat="server" CssClass="form-control" placeholder="Tutar" TextMode="Number" required>
                            </asp:TextBox>
                          </div>
                   <div class="col-md-12">
           <label for="companyName">İşletme Adı</label>
-         <asp:TextBox ID="companyName" runat="server" CssClass="form-control" placeholder="İşletme Adı" TextMode="SingleLine" required>
+         <asp:TextBox ID="inputCompanyName" runat="server" CssClass="form-control" placeholder="İşletme Adı" TextMode="SingleLine" required>
          </asp:TextBox>
        </div>
                   <div class="col-md-12">
    <label for="companyAddress">İşletme Adresi</label>
-  <asp:TextBox ID="companyAddress" runat="server" CssClass="form-control" placeholder="İşletme Adresi" TextMode="SingleLine" required>
+  <asp:TextBox ID="inputCompanyAddress" runat="server" CssClass="form-control" placeholder="İşletme Adresi" TextMode="SingleLine" required>
   </asp:TextBox>
 </div>
                   <div class="col-md-12">
    <label for="demandDesc">Talep Açıklaması</label>
-  <asp:TextBox ID="demandDesc" runat="server" CssClass="form-control" placeholder="Talep Açıklaması" TextMode="SingleLine" required>
+  <asp:TextBox ID="inputDemandDesc" runat="server" CssClass="form-control" placeholder="Talep Açıklaması" TextMode="SingleLine" required>
   </asp:TextBox>
 </div>
                </div>
@@ -50,7 +50,7 @@
         <div class="col-md-6">        
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-3 col-md-offset-2 mb-3">
-                    <asp:Button ID="btnCreateDemand" runat="server" CssClass="btn btn-primary btn-block" BackColor="#5558C9" Text="Talep Oluştur" OnClick="btnSubmit_Click" />
+                    <asp:Button ID="btnCreateDemand" runat="server" CssClass="btn btn-primary btn-block" BackColor="#007F00" Text="Talep Oluştur" OnClick="btnCreateDemand_Click" />
                 </div>
             </div>
 

@@ -58,7 +58,7 @@
                                      <div class="form-group mb-3">
                                      <input id="inputEmail" type="text" placeholder="E-Mail" required="" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
                                      </div>
-                                     <asp:Button ID="btnSignUp" runat="server" Text="Kayýt Ol" CssClass="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" BackColor="#5558C9" OnClick="btnSignUp_Click" />
+                                     <asp:Button ID="btnSignUp" runat="server" Text="Kayýt Ol" CssClass="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" BackColor="#007F00" OnClick="btnSignUp_Click" />
                                     <div class="text-center d-flex justify-content-between mt-4">
                                         <asp:Label ID="lblMsg" runat="server"></asp:Label>
                                     </div>

@@ -43,7 +43,7 @@ body {
     top: 0;
     left: 0;
     height: 100vh;
-    background: #5558c9;
+    background: #105d69;
     z-index: 999;
     transition: all 0.3s ease;
 }
@@ -101,7 +101,7 @@ body {
 
         .sidebar_inner .siderbar_menu > li.active > a,
         .sidebar_inner .siderbar_menu > li > a:hover {
-            background: #3d3d79;
+            background: #146d7a;
             color: #fff;
             text-decoration: none !important;
         }
@@ -162,13 +162,13 @@ body {
         font-size: 25px;
         cursor: pointer;
         margin-right: 20px;
-        color: #5558c9;
+        color: #105d69;
         display: none;
     }
 
     .navbar .logo a {
         font-family: 'Trade Winds';
-        color: #5558c9;
+        color: #105d69;
         font-size: 20px;
     }
 

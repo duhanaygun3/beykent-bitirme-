@@ -1,8 +1,14 @@
-﻿using System;
+﻿using SchoolManagementSystem.Admin;
+using SchoolManagementSystem.App_Start;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
+using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using static SchoolManagementSystem.Models.CommonFn;
@@ -21,22 +27,30 @@ namespace SchoolManagementSystem
         {
             string ıdentity = inpuIdentity.Value.Trim();
             string password = inputPassword.Value.Trim();
-            DataTable dt = fn.Fetch("Select * from Users where IdentityNo = '" + ıdentity + "' and password = '"+password+"' ");
-            DataTable db = fn.Fetch("Select * from Users where IdentityNo = '" + ıdentity + "' and password = '" + password + "' and IsAdmin=1");
-            if (db.Rows.Count>0)
+            DataTable dt = fn.Fetch("Select UserID from Users where IdentityNo = '" + ıdentity + "' and password = '"+password+"' ");
+            DataTable db = fn.Fetch("Select UserID from Users where IdentityNo = '" + ıdentity + "' and password = '" + password + "' and IsAdmin=1");
+            if (dt.Rows.Count <= 0)
             {
-                Session["admin"] = ıdentity;
-                Response.Redirect("Admin/AdminHome.aspx");
-            }
-            else if (dt.Rows.Count > 0)
-            {
-                Session["staff"] = ıdentity;
-                Response.Redirect("User/UserHome.aspx");
+                lblMsg.Text = "Hatalı Giriş!!";
+                lblMsg.ForeColor = System.Drawing.Color.Red;
             }
             else
             {
-                lblMsg.Text = "Login Failed!!";
-                lblMsg.ForeColor = System.Drawing.Color.Red;
+                var hdnUserID = dt.Rows[0][0];
+                if (db.Rows.Count > 0)
+                {
+                    Session["admin"] = ıdentity;
+                    Session["UserId"] = hdnUserID;
+                    Response.Redirect("/Admin/Anasayfa/UserID=" + hdnUserID + "");
+
+
+                }
+                else if (dt.Rows.Count > 0)
+                {
+                    Session["staff"] = ıdentity;
+                    Session["UserId"] = hdnUserID;
+                    Response.Redirect("/Anasayfa/UserID=" + hdnUserID + "");
+                }
             }
         }
 

@@ -12,8 +12,8 @@ namespace SchoolManagementSystem.Models
     {
         public class Commonfnx
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["SchoolCS"].ConnectionString);
-            public void Query( string query)
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString);
+            public void Query( string query, Dictionary<string, object> parameters)
             {
                 if(con.State == ConnectionState.Closed)
                 {
@@ -35,6 +35,11 @@ namespace SchoolManagementSystem.Models
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 return dt;
+            }
+
+            internal void Query(string v)
+            {
+                throw new NotImplementedException();
             }
         }
     }
