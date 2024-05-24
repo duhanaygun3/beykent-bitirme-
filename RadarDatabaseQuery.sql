@@ -16,6 +16,7 @@ CREATE TABLE [dbo].[Users](
 	[Name] [varchar](50) NULL,
 	[SurName] [varchar](50) NULL,
 	[IdentityNo] [varchar](11) NULL,
+	[BirthDate] date NULL,
 	[Email] [varchar](50) NULL,
 	[Address] [varchar](max) NULL,
 	[Phone] [varchar](20) NULL,
@@ -45,6 +46,7 @@ CREATE TABLE [dbo].[Demands](
 	[CompanyAdress] [varchar](max) NULL,
 	[DemandDesc] [varchar](max) NULL,
 	[DemandStatus] [varchar](20) NULL,
+	[AdditionalInformation] [varchar](max) NULL,
 	[CreationDate] [date] NULL,
 	[CreatedBy] [int] NULL,
 	[UpdateDate] [date] NULL,
@@ -82,27 +84,7 @@ GO
 
 USE [RadarSysDb]
 GO
-/****** Object:  StoredProcedure [dbo].[UserProfileUpdate]    Script Date: 22.05.2024 13:15:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[UserSignUp]
-    @Name varchar(50),
-	@Surname varchar(50),
-    @Identitiy varchar(11),
-	@Password varchar(50),
-	@Email varchar(50)
-AS
-BEGIN
-
-INSERT INTO Users(Name,SurName,IdentityNo,Password,Email,CreationDate,IsAdmin)
-VALUES(@Name,@Surname,@Identitiy,@Password,@Email,CONVERT(VARCHAR(10), GETDATE(), 120),0)
-END
-
-USE [RadarSysDb]
-GO
-/****** Object:  StoredProcedure [dbo].[UserProfileUpdate]    Script Date: 22.05.2024 13:15:24 ******/
+/****** Object:  StoredProcedure [dbo].[CreateDemand]    Script Date: 24.05.2024 23:45:55 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -116,15 +98,61 @@ CREATE PROCEDURE [dbo].[CreateDemand]
 	@DemandDesc varchar(MAX)
 AS
 BEGIN
+    -- Kullanýcýnýn adres ve telefon alanlarýnýn boþ olup olmadýðýný kontrol edin
+    DECLARE @UserAdress varchar(50), @UserPhone varchar(20)
+    SELECT @UserAdress = Address, @UserPhone = Phone FROM Users WHERE UserID = @UserID
 
-INSERT INTO Demands(UserID,DemandDate,Amount,CompanyName,CompanyAdress,DemandDesc,DemandStatus,CreationDate,CreatedBy)
-VALUES(@UserID,@DemandDate,@Amount,@CompanyName,@CompanyAdress,@DemandDesc,1,CONVERT(VARCHAR(10), GETDATE(), 120),@UserID)
+    IF (@UserAdress IS NOT NULL AND @UserAdress <> '') AND (@UserPhone IS NOT NULL AND @UserPhone <> '')
+    BEGIN
+        -- Adres ve telefon alanlarý dolu ise, talebi ekle
+        INSERT INTO Demands(UserID,DemandDate,Amount,CompanyName,CompanyAdress,DemandDesc,DemandStatus,CreationDate,CreatedBy)
+        VALUES(@UserID,@DemandDate,@Amount,@CompanyName,@CompanyAdress,@DemandDesc,1,CONVERT(VARCHAR(10), GETDATE(), 120),@UserID)
+    END
+    ELSE
+    BEGIN
+        -- Adres veya telefon alaný boþ ise, bir hata döndür
+        SELECT 'Profil bilgileri tamamlanmadan talep oluþturulamaz.' AS  Result
+    END
 END
+
 
 
 USE [RadarSysDb]
 GO
-/****** Object:  StoredProcedure [dbo].[DemandStatusUpdate]    Script Date: 22.05.2024 13:14:19 ******/
+/****** Object:  StoredProcedure [dbo].[UserSignUp]    Script Date: 24.05.2024 23:48:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[UserSignUp]
+    @Name varchar(50),
+	@Surname varchar(50),
+    @Identitiy varchar(11),
+	@Password varchar(50),
+	@Email varchar(50),
+	@BirthDate date
+AS
+BEGIN
+IF NOT EXISTS (SELECT 1 FROM Users WHERE IdentityNo = @Identitiy)
+BEGIN
+
+INSERT INTO Users(Name,SurName,IdentityNo,Password,Email,BirthDate,CreationDate,IsAdmin)
+VALUES(@Name,@Surname,@Identitiy,@Password,@Email,@BirthDate,CONVERT(VARCHAR(10), GETDATE(), 120),0)
+SELECT 'Kayýt baþarýyla eklendi.' AS Result
+END
+ELSE
+BEGIN
+SELECT('Bu TC Kimlik Numarasýna sahip bir kullanýcý zaten mevcut.') AS Result
+END
+END
+
+
+
+
+
+USE [RadarSysDb]
+GO
+/****** Object:  StoredProcedure [dbo].[DemandStatusUpdate]    Script Date: 24.05.2024 23:47:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -166,9 +194,10 @@ END
 END
 
 
+
 USE [RadarSysDb]
 GO
-/****** Object:  StoredProcedure [dbo].[UserProfileUpdate]    Script Date: 22.05.2024 13:15:24 ******/
+/****** Object:  StoredProcedure [dbo].[UserProfileUpdate]    Script Date: 24.05.2024 23:48:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -187,5 +216,37 @@ WHERE UserID = @UserID
 
     
 END
+
+
+USE [RadarSysDb]
+GO
+/****** Object:  StoredProcedure [dbo].[DemandInformationUpdate]    Script Date: 24.05.2024 23:47:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[DemandInformationUpdate]
+    @DemandID int,
+	@UserID int,
+	@DemandDate date,
+    @Amount float,
+	@CompanyName varchar(50),
+	@CompanyAdress varchar(50),
+	@DemandDesc varchar(MAX),
+	@AdditionalInformation varchar(MAX)
+AS
+BEGIN
+
+Update Demands 
+SET DemandDate = @DemandDate, Amount = @Amount, CompanyName = @CompanyName, CompanyAdress=@CompanyAdress, DemandDesc = @DemandDesc,AdditionalInformation = @AdditionalInformation,UpdateDate = CONVERT(VARCHAR(10), GETDATE(), 120), UpdatedBy = @UserID
+WHERE DemandId = @DemandID and UserID =@UserID
+END
+
+
+
+
+
+
+
 
 
