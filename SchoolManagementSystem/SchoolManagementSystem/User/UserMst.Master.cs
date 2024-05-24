@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SchoolManagementSystem.User
+namespace Radar.User
 {
     public partial class UserMst : System.Web.UI.MasterPage
     {

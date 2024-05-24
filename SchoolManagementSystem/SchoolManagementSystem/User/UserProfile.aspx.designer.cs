@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SchoolManagementSystem.User
+namespace Radar.User
 {
 
 
@@ -94,6 +94,15 @@ namespace SchoolManagementSystem.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox surname;
+
+        /// <summary>
+        /// inputbirthDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox inputbirthDate;
 
         /// <summary>
         /// eMail control.

@@ -11,9 +11,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
-using static SchoolManagementSystem.Models.CommonFn;
+using static Radar.Models.CommonFn;
 
-namespace SchoolManagementSystem.User
+namespace Radar.User
 {
     public partial class UserProfile : System.Web.UI.Page
     {
@@ -32,7 +32,7 @@ namespace SchoolManagementSystem.User
             if (!IsPostBack)
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
-                string query = "SELECT IdentityNo,Name,SurName,Email,Password,Phone,Address FROM Users Where UserID = '" + userID.Text + "'";
+                string query = "SELECT IdentityNo,Name,SurName,BirthDate,Email,Password,Phone,Address FROM Users Where UserID = '" + userID.Text + "'";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -49,6 +49,11 @@ namespace SchoolManagementSystem.User
                             mobileNumber.Text = reader["Phone"].ToString();
                             adress.Text = reader["Address"].ToString();
                             eMail.Text = reader["Email"].ToString();
+                            if (reader["BirthDate"] != DBNull.Value)
+                            {
+                                inputbirthDate.Text = ((DateTime)reader["BirthDate"]).ToString("yyyy-MM-dd");
+                            }                          
+
                         }
                         reader.Close();
                     }
@@ -83,7 +88,7 @@ namespace SchoolManagementSystem.User
                         command.ExecuteNonQuery();
                     }
                 }
-                string message = "Stored Procedure çalýþtýrýldý.";
+                string message = "Profil güncellendi.";
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
             }
         }

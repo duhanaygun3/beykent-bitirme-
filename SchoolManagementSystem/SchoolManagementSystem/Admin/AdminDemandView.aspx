@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMst.Master" AutoEventWireup="true" CodeBehind="AdminDemandView.aspx.cs" Inherits="SchoolManagementSystem.Admin.AdminDemandView" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMst.Master" AutoEventWireup="true" CodeBehind="AdminDemandView.aspx.cs" Inherits="Radar.Admin.AdminDemandView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -10,7 +10,7 @@
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                  <div class="col-md-6">
                      <input id="filterCompanyName" type="text" placeholder="Þirket Adý" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
-                     <asp:Button ID="btnCompanyNameFilter" runat="server" CssClass="btn btn-primary btn-block" BackColor="#007F00" Text="Filtrele" OnClick="btnCompanyNameFilter_Click"/>
+                     <asp:Button ID="btnCompanyNameFilter" runat="server" CssClass="btn btn-primary btn-block" BackColor="#105d69" Text="Filtrele" OnClick="btnCompanyNameFilter_Click"/>
  </div>
                 <div class="col-md-12">
                     <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-bordered" EmptyDataText="Görüntülenecek talebiniz bulunmamaktadýr."
@@ -57,7 +57,7 @@
                             </asp:TemplateField>
 
                         </Columns>
-                        <HeaderStyle BackColor="#007F00" ForeColor="White" />
+                        <HeaderStyle BackColor="#105d69" ForeColor="White" />
                     </asp:GridView>
                 </div>
             </div>

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SchoolManagementSystem.Admin
+namespace Radar.Admin
 {
     public partial class AdminHome : System.Web.UI.Page
     {

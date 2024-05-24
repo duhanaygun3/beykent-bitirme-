@@ -46,6 +46,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -69,20 +71,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\AddClass.aspx" />
+    <Content Include="Admin\AdminDemandTransaction.aspx" />
+    <Content Include="Admin\AdminDemandView.aspx" />
+    <Content Include="Admin\AdminGiftAndCouponView.aspx" />
     <Content Include="Admin\AdminHome.aspx" />
-    <Content Include="Admin\ClassFees.aspx" />
-    <Content Include="Admin\EmpAttendanceDetails.aspx" />
-    <Content Include="Admin\EmployeeAttendance.aspx" />
-    <Content Include="Admin\Expense.aspx" />
-    <Content Include="Admin\ExpenseDetails.aspx" />
-    <Content Include="Admin\MarkDetails.aspx" />
-    <Content Include="Admin\Marks.aspx" />
-    <Content Include="Admin\Student.aspx" />
-    <Content Include="Admin\StudentAttendanceDetails.aspx" />
-    <Content Include="Admin\Subject.aspx" />
-    <Content Include="Admin\Teacher.aspx" />
-    <Content Include="Admin\TeacherSubject.aspx" />
+    <Content Include="Admin\AdminProfile.aspx" />
+    <None Include="Connected Services\IdentityValidation\configuration91.svcinfo" />
+    <None Include="Connected Services\IdentityValidation\configuration.svcinfo" />
+    <None Include="Connected Services\IdentityValidation\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -95,7 +94,6 @@
     <Content Include="Image\login.jpg" />
     <Content Include="Image\logo.png" />
     <Content Include="Login.aspx" />
-    <Content Include="MarksDetailUserControl.ascx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -120,6 +118,10 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Admin\AdminMst.Master" />
+    <None Include="Connected Services\IdentityValidation\KPSPublic.wsdl" />
+    <Content Include="Connected Services\IdentityValidation\SchoolManagementSystem.IdentityValidation.TCKimlikNoDogrulaResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -197,11 +199,12 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="SignUp.aspx" />
-    <Content Include="StudentAttendanceUC.ascx" />
-    <Content Include="Teacher\MarksDetails.aspx" />
-    <Content Include="Teacher\StudentAttendance.aspx" />
-    <Content Include="Teacher\StudentAttendanceDetails.aspx" />
-    <Content Include="Teacher\TeacherHome.aspx" />
+    <Content Include="User\GiftAndCouponView.aspx" />
+    <Content Include="User\CreateDemand.aspx" />
+    <Content Include="User\DemandView.aspx" />
+    <Content Include="User\UserEditDemand.aspx" />
+    <Content Include="User\UserHome.aspx" />
+    <Content Include="User\UserProfile.aspx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -215,12 +218,26 @@
     <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\AddClass.aspx.cs">
-      <DependentUpon>AddClass.aspx</DependentUpon>
+    <Compile Include="Admin\AdminDemandTransaction.aspx.cs">
+      <DependentUpon>AdminDemandTransaction.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\AddClass.aspx.designer.cs">
-      <DependentUpon>AddClass.aspx</DependentUpon>
+    <Compile Include="Admin\AdminDemandTransaction.aspx.designer.cs">
+      <DependentUpon>AdminDemandTransaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminDemandView.aspx.cs">
+      <DependentUpon>AdminDemandView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminDemandView.aspx.designer.cs">
+      <DependentUpon>AdminDemandView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminGiftAndCouponView.aspx.cs">
+      <DependentUpon>AdminGiftAndCouponView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminGiftAndCouponView.aspx.designer.cs">
+      <DependentUpon>AdminGiftAndCouponView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminHome.aspx.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
@@ -236,89 +253,18 @@
     <Compile Include="Admin\AdminMst.Master.designer.cs">
       <DependentUpon>AdminMst.Master</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ClassFees.aspx.cs">
-      <DependentUpon>ClassFees.aspx</DependentUpon>
+    <Compile Include="Admin\AdminProfile.aspx.cs">
+      <DependentUpon>AdminProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ClassFees.aspx.designer.cs">
-      <DependentUpon>ClassFees.aspx</DependentUpon>
+    <Compile Include="Admin\AdminProfile.aspx.designer.cs">
+      <DependentUpon>AdminProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\EmpAttendanceDetails.aspx.cs">
-      <DependentUpon>EmpAttendanceDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\EmpAttendanceDetails.aspx.designer.cs">
-      <DependentUpon>EmpAttendanceDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\EmployeeAttendance.aspx.cs">
-      <DependentUpon>EmployeeAttendance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\EmployeeAttendance.aspx.designer.cs">
-      <DependentUpon>EmployeeAttendance.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Expense.aspx.cs">
-      <DependentUpon>Expense.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Expense.aspx.designer.cs">
-      <DependentUpon>Expense.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ExpenseDetails.aspx.cs">
-      <DependentUpon>ExpenseDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ExpenseDetails.aspx.designer.cs">
-      <DependentUpon>ExpenseDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\MarkDetails.aspx.cs">
-      <DependentUpon>MarkDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\MarkDetails.aspx.designer.cs">
-      <DependentUpon>MarkDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Marks.aspx.cs">
-      <DependentUpon>Marks.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Marks.aspx.designer.cs">
-      <DependentUpon>Marks.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Student.aspx.cs">
-      <DependentUpon>Student.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Student.aspx.designer.cs">
-      <DependentUpon>Student.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\StudentAttendanceDetails.aspx.cs">
-      <DependentUpon>StudentAttendanceDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\StudentAttendanceDetails.aspx.designer.cs">
-      <DependentUpon>StudentAttendanceDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Subject.aspx.cs">
-      <DependentUpon>Subject.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Subject.aspx.designer.cs">
-      <DependentUpon>Subject.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Teacher.aspx.cs">
-      <DependentUpon>Teacher.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Teacher.aspx.designer.cs">
-      <DependentUpon>Teacher.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\TeacherSubject.aspx.cs">
-      <DependentUpon>TeacherSubject.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\TeacherSubject.aspx.designer.cs">
-      <DependentUpon>TeacherSubject.aspx</DependentUpon>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\IdentityValidation\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -330,13 +276,6 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MarksDetailUserControl.ascx.cs">
-      <DependentUpon>MarksDetailUserControl.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MarksDetailUserControl.ascx.designer.cs">
-      <DependentUpon>MarksDetailUserControl.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Models\CommonFn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignUp.aspx.cs">
@@ -346,54 +285,61 @@
     <Compile Include="SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StudentAttendanceUC.ascx.cs">
-      <DependentUpon>StudentAttendanceUC.ascx</DependentUpon>
+    <Compile Include="User\GiftAndCouponView.aspx.cs">
+      <DependentUpon>GiftAndCouponView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StudentAttendanceUC.ascx.designer.cs">
-      <DependentUpon>StudentAttendanceUC.ascx</DependentUpon>
+    <Compile Include="User\GiftAndCouponView.aspx.designer.cs">
+      <DependentUpon>GiftAndCouponView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Teacher\MarksDetails.aspx.cs">
-      <DependentUpon>MarksDetails.aspx</DependentUpon>
+    <Compile Include="User\CreateDemand.aspx.cs">
+      <DependentUpon>CreateDemand.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Teacher\MarksDetails.aspx.designer.cs">
-      <DependentUpon>MarksDetails.aspx</DependentUpon>
+    <Compile Include="User\CreateDemand.aspx.designer.cs">
+      <DependentUpon>CreateDemand.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Teacher\StudentAttendance.aspx.cs">
-      <DependentUpon>StudentAttendance.aspx</DependentUpon>
+    <Compile Include="User\DemandView.aspx.cs">
+      <DependentUpon>DemandView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Teacher\StudentAttendance.aspx.designer.cs">
-      <DependentUpon>StudentAttendance.aspx</DependentUpon>
+    <Compile Include="User\DemandView.aspx.designer.cs">
+      <DependentUpon>DemandView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Teacher\StudentAttendanceDetails.aspx.cs">
-      <DependentUpon>StudentAttendanceDetails.aspx</DependentUpon>
+    <Compile Include="User\UserEditDemand.aspx.cs">
+      <DependentUpon>UserEditDemand.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Teacher\StudentAttendanceDetails.aspx.designer.cs">
-      <DependentUpon>StudentAttendanceDetails.aspx</DependentUpon>
+    <Compile Include="User\UserEditDemand.aspx.designer.cs">
+      <DependentUpon>UserEditDemand.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Teacher\TeacherHome.aspx.cs">
-      <DependentUpon>TeacherHome.aspx</DependentUpon>
+    <Compile Include="User\UserHome.aspx.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Teacher\TeacherHome.aspx.designer.cs">
-      <DependentUpon>TeacherHome.aspx</DependentUpon>
+    <Compile Include="User\UserHome.aspx.designer.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Teacher\TeacherMst.Master.cs">
-      <DependentUpon>TeacherMst.Master</DependentUpon>
+    <Compile Include="User\UserMst.Master.cs">
+      <DependentUpon>UserMst.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Teacher\TeacherMst.Master.designer.cs">
-      <DependentUpon>TeacherMst.Master</DependentUpon>
+    <Compile Include="User\UserMst.Master.designer.cs">
+      <DependentUpon>UserMst.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
-    <Content Include="Teacher\TeacherMst.Master" />
+    <Content Include="User\UserMst.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -409,6 +355,15 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\IdentityValidation\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

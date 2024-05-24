@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Routing;
 
-namespace SchoolManagementSystem.App_Start
+namespace Radar.App_Start
 {
     public static class RouteConfig
     {
@@ -50,6 +50,10 @@ namespace SchoolManagementSystem.App_Start
                "Admin/Hediye-Kuponu-Görüntüle/{UserID}",
                "~/Admin/AdminGiftAndCouponView.aspx"
                );
+            routes.MapPageRoute("UserEditDemand",
+                "Talep-Düzenle/{UserID}/{DemandId}",
+                "~/User/UserEditDemand.aspx"
+                );
 
 
         }

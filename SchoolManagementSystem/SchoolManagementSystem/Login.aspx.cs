@@ -1,5 +1,5 @@
-﻿using SchoolManagementSystem.Admin;
-using SchoolManagementSystem.App_Start;
+﻿using Radar.Admin;
+using Radar.App_Start;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,9 +11,9 @@ using System.Web.DynamicData;
 using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using static SchoolManagementSystem.Models.CommonFn;
+using static Radar.Models.CommonFn;
 
-namespace SchoolManagementSystem
+namespace Radar
 {
     public partial class Login : System.Web.UI.Page
     {

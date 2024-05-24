@@ -7,9 +7,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
-using static SchoolManagementSystem.Models.CommonFn;
+using static Radar.Models.CommonFn;
 
-namespace SchoolManagementSystem.Admin
+namespace Radar.Admin
 {
     public partial class AdminDemandView : System.Web.UI.Page
     {

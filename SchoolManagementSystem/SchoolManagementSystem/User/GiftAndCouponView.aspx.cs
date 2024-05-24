@@ -7,9 +7,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
-using static SchoolManagementSystem.Models.CommonFn;
+using static Radar.Models.CommonFn;
 
-namespace SchoolManagementSystem.User
+namespace Radar.User
 {
     public partial class GiftAndCouponView : System.Web.UI.Page
     {
@@ -31,7 +31,7 @@ namespace SchoolManagementSystem.User
 
         private void GetDemands()
         {
-            DataTable dt = fn.Fetch("SELECT GC.ID, GC.DemandId, GC.Amount, GC.CreationDate, D.CompanyName, CONCAT(U.Name, ' ', U.SurName) AS GiftCreatorAdmin FROM GiftAndCoupons gc INNER JOIN Demands D ON D.DemandId = GC.DemandId INNER JOIN Users U ON U.UserID= '" + userID.Text + "'");
+            DataTable dt = fn.Fetch("SELECT GC.ID, GC.DemandId, GC.Amount, GC.CreationDate, D.CompanyName, CONCAT(U.Name, ' ', U.SurName) AS GiftCreatorAdmin FROM GiftAndCoupons GC INNER JOIN Demands D ON D.DemandId = GC.DemandId INNER JOIN Users U ON D.UserID = U.UserID and GC.Owner = U.UserID WHERE GC.Owner= '" + userID.Text + "'");
             GridView1.DataSource = dt;
             GridView1.DataBind();
         }

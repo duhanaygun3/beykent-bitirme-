@@ -1,4 +1,4 @@
-using SchoolManagementSystem.Admin;
+using Radar.Admin;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,11 +6,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using static SchoolManagementSystem.Models.CommonFn;
+using static Radar.Models.CommonFn;
 
-namespace SchoolManagementSystem
+namespace Radar
 {
     public partial class SignUp : System.Web.UI.Page
     {
@@ -28,6 +29,10 @@ namespace SchoolManagementSystem
             string password = inputPassword.Value.Trim();
             string checkPassword = inputCheckPassword.Value.Trim();
             string email = inputEmail.Value.Trim();
+            string birthDate = inputBirthDate.Value.Trim();
+            DateTime birthDateYear = DateTime.Parse(inputBirthDate.Value);
+            int year = birthDateYear.Year;
+            bool status;
             if (password != checkPassword)
             {
                 lblMsg.Text = "Þifreler birbiri ile uyuþmuyor";
@@ -35,49 +40,70 @@ namespace SchoolManagementSystem
                 Response.Write("<script>alert('Þifreler birbiri ile uyuþmuyor')</script>");
 
             }
-            else if (identity.Length !=11)
-            {
-                lblMsg.Text = "T.C Kimlik No hatalý !";
-                lblMsg.ForeColor = System.Drawing.Color.Red;
-                Response.Write("<script>alert('Þifreler birbiri ile uyuþmuyor')</script>");
-            }
             else
             {
-                //fn.Query(@"Insert into Users values ('" + name + "'," +
-                //" '" + surName + "'," +
-                //" '" + identity + "'," +
-                //" '" + email + "'," +
-                //" '" + null + "'," +
-                //" '" + password + "'," +
-                //" '" + 0 + "'," +
-                //" '" + DateTime.Now.ToString("yyyy/MM/dd") + "'," +
-                //" '" + DateTime.Now.ToString("yyyy/MM/dd") + "')");
-                //Response.Redirect("Login.aspx");
-                string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                try
                 {
-                    using (SqlCommand command = new SqlCommand("UserSignUp", connection))
+                    using (IdentityValidation.KPSPublicSoapClient identityService = new IdentityValidation.KPSPublicSoapClient())
                     {
-                        command.CommandType = CommandType.StoredProcedure;
+                        long identityNumber;
+                        if (long.TryParse(identity, out identityNumber))
+                        {
+                            // Dönüþüm baþarýlý ise, T.C. Kimlik Numarasýný kullanarak doðrulamayý yapabilirsiniz
+                            status = identityService.TCKimlikNoDogrula(identityNumber, name, surName, year);
+                            if (status)
+                            {
+                                string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
+                                using (SqlConnection connection = new SqlConnection(connectionString))
+                                {
+                                    using (SqlCommand command = new SqlCommand("UserSignUp", connection))
+                                    {
+                                        command.CommandType = CommandType.StoredProcedure;
 
-                        // Stored Procedure'a gerekli parametreleri ekleyebilirsiniz
-                        command.Parameters.AddWithValue("@Name", name);
-                        command.Parameters.AddWithValue("@Surname", surName);
-                        command.Parameters.AddWithValue("@Identitiy", identity);
-                        command.Parameters.AddWithValue("@Password", password);
-                        command.Parameters.AddWithValue("@Email", email);
+                                        // Diðer parametreleri ekleyin
+                                        command.Parameters.AddWithValue("@Name", name);
+                                        command.Parameters.AddWithValue("@Surname", surName);
+                                        command.Parameters.AddWithValue("@Identitiy", identity);
+                                        command.Parameters.AddWithValue("@Password", password);
+                                        command.Parameters.AddWithValue("@Email", email);
+                                        command.Parameters.AddWithValue("@BirthDate", birthDate);
 
-                        connection.Open();
-                        command.ExecuteNonQuery();
+                                        connection.Open();
+                                        using (SqlDataReader reader = command.ExecuteReader())
+                                        {
+                                            if (reader.Read())
+                                            {
+                                                lblMsg.Text = reader["Result"].ToString();
+                                            }
+                                            reader.Close();
+                                            // Eðer sonuçlar varsa
+                                            if (lblMsg.Text == "Kayýt baþarýyla eklendi.")
+                                            {
+                                                Response.Redirect("Login.aspx");
+                                                Response.Write("<script>alert('" + lblMsg.Text + "')</script>");
+                                            }
+                                            else
+                                            {
+                                                lblMsg.Text = "Bu TC Kimlik Numarasýna sahip bir kullanýcý zaten mevcut.";
+                                                lblMsg.ForeColor = System.Drawing.Color.Red;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            else
+                            {
+                                lblMsg.Text = "Girilen bilgiler, kimlik bilgileri ile uyuþmuyor!";
+                                lblMsg.ForeColor = System.Drawing.Color.Red;
+                            }
+                        }
                     }
                 }
-
-                // Daha sonra istediðiniz iþlemleri gerçekleþtirebilirsiniz
-                // Örneðin, bir mesaj kutusu göstermek için:
-                string message = "Baþarýyla kayýt edildi.";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
-                Response.Redirect("Login.aspx");
+                catch (Exception)
+                {
+                }
             }
         }
-        }
     }
+}

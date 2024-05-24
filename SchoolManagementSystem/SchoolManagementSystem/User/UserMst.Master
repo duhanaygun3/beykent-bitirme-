@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UserMst.Master.cs" Inherits="SchoolManagementSystem.User.UserMst" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UserMst.Master.cs" Inherits="Radar.User.UserMst" %>
 
 
 <!DOCTYPE html>

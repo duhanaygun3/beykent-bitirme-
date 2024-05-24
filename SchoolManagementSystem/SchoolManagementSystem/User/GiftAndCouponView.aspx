@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/User/UserMst.Master" AutoEventWireup="true" CodeBehind="GiftAndCouponView.aspx.cs" Inherits="SchoolManagementSystem.User.GiftAndCouponView" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/User/UserMst.Master" AutoEventWireup="true" CodeBehind="GiftAndCouponView.aspx.cs" Inherits="Radar.User.GiftAndCouponView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -45,7 +45,7 @@
                             </asp:TemplateField>
 
                         </Columns>
-                        <HeaderStyle BackColor="#007F00" ForeColor="White" />
+                        <HeaderStyle BackColor="#105d69" ForeColor="White" />
                     </asp:GridView>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/UserMst.Master" AutoEventWireup="true" CodeBehind="DemandView.aspx.cs" Inherits="SchoolManagementSystem.User.DemandView" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/UserMst.Master" AutoEventWireup="true" CodeBehind="DemandView.aspx.cs" Inherits="Radar.User.DemandView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -8,14 +8,14 @@
         <div class="container p-md-4 p-sm-4">
             <h3 class="text-center mt-3">Talep Görüntüle</h3>
             <div class="row mb-3 mr-lg-5 ml-lg-5">
-                 <div class="col-md-6">
-                     <input id="filterCompanyName" type="text" placeholder="Şirket Adı" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
-                     <asp:Button ID="btnCompanyNameFilter" runat="server" CssClass="btn btn-primary btn-block" BackColor="#007F00" Text="Filtrele" OnClick="btnCompanyNameFilter_Click"/>
-                     <asp:Button ID="btnAllDemands" runat="server" CssClass="btn btn-primary btn-block" BackColor="#007F00" Text="Tüm Talepleri Listele" OnClick="btnAllDemands_Click"/>
- </div>
+                <div class="col-md-6">
+                    <input id="filterCompanyName" type="text" placeholder="Şirket Adı" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
+                    <asp:Button ID="btnCompanyNameFilter" runat="server" CssClass="btn btn-primary btn-block" BackColor="#105d69" Text="Filtrele" OnClick="btnCompanyNameFilter_Click" />
+                    <asp:Button ID="btnAllDemands" runat="server" CssClass="btn btn-primary btn-block" BackColor="#105d69" Text="Tüm Talepleri Listele" OnClick="btnAllDemands_Click" />
+                </div>
                 <div class="col-md-12">
                     <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-bordered" EmptyDataText="Görüntülenecek talebiniz bulunmamaktadır."
-                        AutoGenerateColumns="False" AllowPaging="True" PageSize="4" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="DemandId">
+                        AutoGenerateColumns="False" AllowPaging="False" PageSize="4" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="DemandId" OnRowCommand="GridView1_RowCommand">
                         <Columns>
                             <asp:TemplateField HeaderText="Talep Numarası">
                                 <ItemTemplate>
@@ -53,13 +53,19 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Talep Durumu">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblDemandDesc" runat="server" Text='<%# Eval("StatusDesc") %>'></asp:Label>
+                                    <asp:Label ID="lblDemandStatus" runat="server" Text='<%# Eval("StatusDesc") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Talep Düzenleme">
+                                <ItemTemplate>
+                                    <asp:Button runat="server" ID="btnEditDemand" Text="Düzenle" CommandName="EditDemand" CommandArgument='<%# Container.DataItemIndex %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
 
                         </Columns>
-                        <HeaderStyle BackColor="#007F00" ForeColor="White" />
+                        <HeaderStyle BackColor="#105d69" ForeColor="White" />
                     </asp:GridView>
+                    <asp:Label ID="lblInformation" runat="server" Text='Onaylanan veya Red durumundaki talepler düzenlenemez!' ForeColor="Red"></asp:Label>
                 </div>
             </div>
 

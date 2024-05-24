@@ -9,9 +9,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
-using static SchoolManagementSystem.Models.CommonFn;
+using static Radar.Models.CommonFn;
 
-namespace SchoolManagementSystem.User
+namespace Radar.User
 {
     public partial class CreateDemand : System.Web.UI.Page
     {
@@ -35,36 +35,41 @@ namespace SchoolManagementSystem.User
 
         protected void btnCreateDemand_Click(object sender, EventArgs e)
         {
-            string demandDate = inputDemandDate.Text.Trim();
-            string amount = inputAmount.Text.Trim();
-            string companyName = inputCompanyName.Text.Trim();
-            string companyAdress = inputCompanyAddress.Text.Trim();
-            string demandDesc = inputDemandDesc.Text.Trim();
-
             string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand("CreateDemand", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-
+                    decimal amount2;
                     // Stored Procedure'a gerekli parametreleri ekleyebilirsiniz
                     command.Parameters.AddWithValue("@UserID", Convert.ToInt32(userID.Text));
-                    command.Parameters.AddWithValue("@DemandDate", demandDate);
-                    command.Parameters.AddWithValue("@Amount", Convert.ToDecimal(amount));
-                    command.Parameters.AddWithValue("@CompanyName", companyName);
-                    command.Parameters.AddWithValue("@CompanyAdress", companyAdress);
-                    command.Parameters.AddWithValue("@DemandDesc", demandDesc);
+                    command.Parameters.AddWithValue("@DemandDate", inputDemandDate.Text.Trim());
+                    command.Parameters.AddWithValue("@Amount", inputAmount.Text.Trim());
+                    command.Parameters.AddWithValue("@CompanyName", inputCompanyName.Text.Trim());
+                    command.Parameters.AddWithValue("@CompanyAdress", inputCompanyAddress.Text.Trim());
+                    command.Parameters.AddWithValue("@DemandDesc", inputDemandDesc.Text.Trim());
 
                     connection.Open();
-                    command.ExecuteNonQuery();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            lblMsg.Text = reader["Result"].ToString();
+                        }
+                        reader.Close();
+                        // Eğer sonuçlar varsa
+                        if (lblMsg.Text == "Talep oluşturuldu.")
+                        {
+                            Response.Write("<script>alert('" + lblMsg.Text + "')</script>");
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('" + lblMsg.Text + "')</script>");
+                        }
+                    }
                 }
             }
-
-            Response.Write("<script>alert('Talep Oluşturuldu.')</script>");
-
-
-            //Response.Redirect("Login.aspx");
         }
 
     }
