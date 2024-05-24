@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-12">
                     <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-bordered" EmptyDataText="Görüntülenecek talep bulunmamaktadýr."
-                        AutoGenerateColumns="False" AllowPaging="True" PageSize="4" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="DemandId" OnRowCommand="GridView1_RowCommand">
+                        AutoGenerateColumns="False"  PageSize="4" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="DemandId" OnRowCommand="GridView1_RowCommand">
                         <Columns>
                             <asp:TemplateField HeaderText="Talep Numarasý">
                                 <ItemTemplate>

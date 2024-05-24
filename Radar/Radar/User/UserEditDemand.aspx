@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-md-12">
                     <label for="Amount">Tutar</label>
-                    <asp:TextBox ID="inputAmount" runat="server" CssClass="form-control" placeholder="Tutar" TextMode="Number" required>
+                    <asp:TextBox ID="inputAmount" runat="server" CssClass="form-control" placeholder="Tutar" TextMode="Number" step="0.01" required>
                     </asp:TextBox>
                 </div>
                 <div class="col-md-12">

@@ -76,11 +76,6 @@ namespace Radar.User
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string demandDate = inputDemandDate.Text.Trim();
-            string amount = inputAmount.Text.Trim();
-            string companyName = inputCompanyName.Text.Trim();
-            string companyAdress = inputCompanyAddress.Text.Trim();
-            string demandDesc = inputDemandDesc.Text.Trim();
             string DemandAdditional = !string.IsNullOrEmpty(inputDemandAdditional.Text.Trim()) ? inputDemandAdditional.Text.Trim() : null;
 
             string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
@@ -92,11 +87,11 @@ namespace Radar.User
 
                     command.Parameters.AddWithValue("@DemandID", Convert.ToInt32(demandID.Text));
                     command.Parameters.AddWithValue("@UserID", Convert.ToInt32(userID.Text));
-                    command.Parameters.AddWithValue("@DemandDate", demandDate);
-                    command.Parameters.AddWithValue("@Amount", Convert.ToDecimal(amount));
-                    command.Parameters.AddWithValue("@CompanyName", companyName);
-                    command.Parameters.AddWithValue("@CompanyAdress", companyAdress);
-                    command.Parameters.AddWithValue("@DemandDesc", demandDesc);
+                    command.Parameters.AddWithValue("@DemandDate", inputDemandDate.Text.Trim());
+                    command.Parameters.AddWithValue("@Amount", inputAmount.Text.Trim());
+                    command.Parameters.AddWithValue("@CompanyName", inputCompanyName.Text.Trim());
+                    command.Parameters.AddWithValue("@CompanyAdress", inputCompanyAddress.Text.Trim());
+                    command.Parameters.AddWithValue("@DemandDesc", inputDemandDesc.Text.Trim());
                     command.Parameters.AddWithValue("@AdditionalInformation", DemandAdditional);
 
                     connection.Open();
