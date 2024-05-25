@@ -1,5 +1,5 @@
 Create Database [RadarSysDb]
-
+--Öncelikle yukarýdaki DB Create sorgusunu çalýþtýrýnýz. Ardýndan sýrasý ile Create Table ve Create PROCEDURE sorgularýný çalýþtýrýnýz.
 
 
 USE [RadarSysDb]
@@ -60,8 +60,15 @@ GO
 
 CREATE TABLE DemandStatusDesc (
     StatusID int,
-    StatusDesc varchar
+    StatusDesc varchar(50);
 );
+
+INSERT INTO DemandStatusDesc(StatusID,StatusDesc)
+VALUES (1,'Talep Oluþturuldu'),
+(2,'Talep Ýnceleniyor'),
+(3,'Talep Onaylandý'),
+(4,'Talep Reddedildi'),
+(5,'Ek Bilgi Talep Edildi')
 
 SET ANSI_NULLS ON
 GO
@@ -84,7 +91,7 @@ GO
 
 USE [RadarSysDb]
 GO
-/****** Object:  StoredProcedure [dbo].[CreateDemand]    Script Date: 24.05.2024 23:45:55 ******/
+/****** Object:  StoredProcedure [dbo].[CreateDemand]    Script Date: 25.05.2024 20:30:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -119,12 +126,12 @@ END
 
 USE [RadarSysDb]
 GO
-/****** Object:  StoredProcedure [dbo].[UserSignUp]    Script Date: 24.05.2024 23:48:23 ******/
+/****** Object:  StoredProcedure [dbo].[UserSignUp]    Script Date: 25.05.2024 20:30:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[UserSignUp]
+CREATE PROCEDURE [dbo].[UserSignUp]
     @Name varchar(50),
 	@Surname varchar(50),
     @Identitiy varchar(11),
@@ -148,11 +155,9 @@ END
 
 
 
-
-
 USE [RadarSysDb]
 GO
-/****** Object:  StoredProcedure [dbo].[DemandStatusUpdate]    Script Date: 24.05.2024 23:47:41 ******/
+/****** Object:  StoredProcedure [dbo].[DemandStatusUpdate]    Script Date: 25.05.2024 20:30:54 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -195,9 +200,10 @@ END
 
 
 
+
 USE [RadarSysDb]
 GO
-/****** Object:  StoredProcedure [dbo].[UserProfileUpdate]    Script Date: 24.05.2024 23:48:04 ******/
+/****** Object:  StoredProcedure [dbo].[UserProfileUpdate]    Script Date: 25.05.2024 20:31:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -220,7 +226,7 @@ END
 
 USE [RadarSysDb]
 GO
-/****** Object:  StoredProcedure [dbo].[DemandInformationUpdate]    Script Date: 24.05.2024 23:47:20 ******/
+/****** Object:  StoredProcedure [dbo].[DemandInformationUpdate]    Script Date: 25.05.2024 20:31:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -241,6 +247,10 @@ Update Demands
 SET DemandDate = @DemandDate, Amount = @Amount, CompanyName = @CompanyName, CompanyAdress=@CompanyAdress, DemandDesc = @DemandDesc,AdditionalInformation = @AdditionalInformation,UpdateDate = CONVERT(VARCHAR(10), GETDATE(), 120), UpdatedBy = @UserID
 WHERE DemandId = @DemandID and UserID =@UserID
 END
+
+
+
+
 
 
 
