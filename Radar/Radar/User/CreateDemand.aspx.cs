@@ -41,7 +41,6 @@ namespace Radar.User
                 using (SqlCommand command = new SqlCommand("CreateDemand", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    decimal amount2;
                     // Stored Procedure'a gerekli parametreleri ekleyebilirsiniz
                     command.Parameters.AddWithValue("@UserID", Convert.ToInt32(userID.Text));
                     command.Parameters.AddWithValue("@DemandDate", inputDemandDate.Text.Trim());
