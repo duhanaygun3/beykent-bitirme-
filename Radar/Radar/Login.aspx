@@ -11,17 +11,17 @@
     <script src="Scripts/bootstrap.min.js"></script>
 
     <style>
-    .login,
-    .image {
-        min-height: 100vh;
-    }
+        .login,
+        .image {
+            min-height: 100vh;
+        }
 
-    .bg-image {
-        background-image: url('../Image/login.jpg');
-        background-size: cover;
-        /*background-position: center center;*/
-    }
-</style>
+        .bg-image {
+            background-image: url('../Image/login.jpg');
+            background-size: cover;
+            /*background-position: center center;*/
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -33,12 +33,11 @@
                 <!-- The content half -->
                 <div class="col-md-6 bg-light">
                     <div class="login d-flex align-items-center py-5">
-
                         <!-- Demo content-->
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-10 col-xl-7 mx-auto">
-                                    <asp:Image ID="imgRadar" runat="server" ImageUrl="~/Image/radar.jpg" AlternateText="Radar" CssClass="img-fluid" />
+                                <div class="col-lg-10 col-xl-7 mx-auto text-center">
+                                    <asp:Image ID="imgRadar" runat="server" ImageUrl="~/Image/radar.jpg" AlternateText="Radar" CssClass="img-fluid mb-4" />
                                     <div class="form-group mb-3">
                                         <input id="inpuIdentity" type="text" placeholder="T.C Kimlik" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
                                     </div>
@@ -46,7 +45,7 @@
                                         <input id="inputPassword" type="password" placeholder="Şifre" runat="server"  class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
                                     </div>
                                     <div class="form-group mb-3">
-                                    <input id="hdnUserID" type="text"  runat="server" hidden="hidden" class="form-control rounded-pill border-0 shadow-sm px-4" />
+                                        <input id="hdnUserID" type="text"  runat="server" hidden="hidden" class="form-control rounded-pill border-0 shadow-sm px-4" />
                                     </div>
                                     <asp:Button ID="btnLogin" runat="server" Text="Giriş Yap" CssClass="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" BackColor="#105d69" OnClick="btnLogin_Click" />
                                     <asp:Button ID="btnSignUp" runat="server" Text="Kayıt Ol" CssClass="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" BackColor="#105d69" OnClick="btnSignUp_Click" />
@@ -57,11 +56,9 @@
                             </div>
                         </div>
                         <!-- End -->
-
                     </div>
                 </div>
                 <!-- End -->
-
             </div>
         </div>
     </form>

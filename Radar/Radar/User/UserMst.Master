@@ -15,6 +15,15 @@
     <script src="../Scripts/popper.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
 
+    <style>
+        .profile_img img {
+            width: 150px; /* İstediğiniz genişliği buraya girin */
+            height: 150px; /* İstediğiniz yüksekliği buraya girin */
+            object-fit: cover; /* Orta noktayı değiştirmeden resmi kırp */
+        }
+    </style>
+    
+
     <script>
         $(document).ready(function () {
             $(".siderbar_menu li").click(function () {
@@ -64,7 +73,7 @@
 
                     <div class="profile_info">
                         <div class="profile_img">
-                            <img src="../Image/logo.png" alt="profile_img">
+                            <img src="../Image/logo2.png" alt="profile_img">
                         </div>
                         <div class="profile_data">
                             <p class="name">Kullanıcı Paneli</p>
