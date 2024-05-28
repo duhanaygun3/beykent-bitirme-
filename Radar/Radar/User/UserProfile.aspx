@@ -61,17 +61,10 @@
                     <asp:TextBox ID="adress" runat="server" CssClass="form-control" placeholder="Adress" TextMode="SingleLine" required>
                     </asp:TextBox>
                 </div>
-            </div>
-    </div>
-    <div class="col-md-6">
-        <div class="row mb-3 mr-lg-5 ml-lg-5">
-            <div class="col-md-3 col-md-offset-2 mb-3">
-                <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-primary btn-block" BackColor="#105d69" Text="Güncelle" OnClick="btnUpdate_Click" />
+                <div class="col-md-12 text-left mt-3">
+                    <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-primary" BackColor="#105d69" Text="Güncelle" OnClick="btnUpdate_Click" />
+                </div>
             </div>
         </div>
-
     </div>
-    </div>
-
-
 </asp:Content>

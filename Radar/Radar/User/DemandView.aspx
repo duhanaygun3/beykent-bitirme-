@@ -9,11 +9,13 @@
             <h3 class="text-center mt-3">Talep Görüntüle</h3>
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-6">
-                    <input id="filterCompanyName" type="text" placeholder="Şirket Adı" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
-                    <asp:Button ID="btnCompanyNameFilter" runat="server" CssClass="btn btn-primary btn-block" BackColor="#105d69" Text="Filtrele" OnClick="btnCompanyNameFilter_Click" />
-                    <asp:Button ID="btnAllDemands" runat="server" CssClass="btn btn-primary btn-block" BackColor="#105d69" Text="Tüm Talepleri Listele" OnClick="btnAllDemands_Click" />
+                    <input id="filterCompanyName" type="text" placeholder="Şirket Adı" runat="server" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4 mb-2" />
+                    <div class="d-flex justify-content-between">
+                        <asp:Button ID="btnCompanyNameFilter" runat="server" CssClass="btn btn-primary" BackColor="#105d69" Text="Filtrele" OnClick="btnCompanyNameFilter_Click" />
+                        <asp:Button ID="btnAllDemands" runat="server" CssClass="btn btn-secondary ml-auto" BackColor="#105d69" Text="Tüm Talepleri Listele" OnClick="btnAllDemands_Click" />
+                    </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mt-3">
                     <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-bordered" EmptyDataText="Görüntülenecek talebiniz bulunmamaktadır."
                         AutoGenerateColumns="False" AllowPaging="False" PageSize="4" OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="DemandId" OnRowCommand="GridView1_RowCommand">
                         <Columns>
@@ -73,4 +75,3 @@
     </div>
 
 </asp:Content>
-
